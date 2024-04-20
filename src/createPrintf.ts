@@ -4,6 +4,9 @@ import {
 import {
   tokenize,
 } from './tokenize';
+import {
+  conversions,
+} from './conversions';
 import type {
   Token,
   PlaceholderToken,
@@ -153,7 +156,12 @@ export const createPrintf = (configuration?: Configuration): Printf => {
 
           result += boundValue;
         } else {
-          throw new Error('Unknown format specifier.');
+          const conversion = conversions.get(token.conversion);
+          if(conversion) {
+            result += conversion(boundValue);
+          } else {
+            throw new Error('Unknown format specifier.');
+          }
         }
       }
     }
