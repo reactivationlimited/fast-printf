@@ -10,6 +10,7 @@ const clients = [
   require('./implementations/sprintf-js'),
   require('./implementations/printf'),
   require('./implementations/fast-printf'),
+  require('./implementations/local-fast-printf'),
 ];
 
 const tests = [
